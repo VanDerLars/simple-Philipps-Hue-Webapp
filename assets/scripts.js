@@ -66,7 +66,12 @@ function listRooms(){
   // event-handler
   $( ".lamp" ).on("click", function(){
     var lampid = $(this).data("lampid");
-    toggleLamp(lampid)
+    toggleLamp(lampid);
+  });
+
+  $( ".lamp" ).on("click", async function(){
+    var lampid = $(this).data("lampid");
+    lamp_wait_state(lampid);
   });
 }
 

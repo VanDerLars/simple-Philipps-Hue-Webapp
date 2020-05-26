@@ -6,6 +6,7 @@ html, body{
     font-size: 14px;
 
     text-shadow: 0 1px 0 #4b4b4b;
+    user-select: none;
 }
 h1 {
     font-size: 16px;
@@ -58,6 +59,16 @@ h1 {
     text-align: center;
     padding: 5px 10px;
     box-shadow: 0 1px 2px #0000006b;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.switch-item:hover {
+    box-shadow: 0 2px 3px #0000006b;
+    /* transform: translateY(-1px); */
+}
+.switch-item:active {
+    box-shadow: 0 1px 1px #0000006b , 0 1px 1px #0000006b inset;
+    /* transform: translateY(-1px); */
 }
 
 .switch-item.selected {
@@ -71,23 +82,48 @@ h1 {
 }
 
 
-.room .name {
-    font-size: 18px;
-    font-weight: 700;
-    color: #688294;
+button {
+    width: 100%;
+    margin-bottom: 20px;
+    background: #3a3a3a;
+    color: #f8f9f8;
+    font-size: 14px;
+    text-align: left;
+    border: 0px solid;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    padding: 10px 15px;
 }
+
+button:hover {
+    border-radius: 5px;
+    transition: all 0.3s ease;
+
+    background: #4b4b4b;
+    box-shadow: 0 1px 2px #0000006b;
+}
+
+
 .room .name {
-    font-size: 18px;
-    font-weight: 700;
-    color: #688294;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fcfdfc;
+}
+.lamp_state {
+    color: grey;
+    margin-top: 5px;
 }
 .lamp .lamp_name {
-    font-size: 18px;
-    font-weight: 700;
-    color: #688294;
+    font-size: 16px;
+    font-weight: 400;
+    color: #fcfdfc;
 }
-
-
+.lamp.false .lamp_name{
+    color: #a7a7a7;
+}
+.lamp.false {
+    background: #2f2f2f;
+}
 
 
 .result{
@@ -110,19 +146,51 @@ h1 {
 .debug-hidden .list {
     width: calc(100% - 210px);
 }
+.true .status {
+    background: #4CAF50;
+    border: 1px solid #093e0a;
+    box-shadow: 0 1px 2px #0000006b inset;
+}
+.false .status {
+    background: #F44336;
+    border: 1px solid #75201a;
+    box-shadow: 0 2px 2px #0000006b;
+}
+.load .status {
+    background: #1778c5;
+    border: 1px solid #10568e;
+    box-shadow: 0 0px 0px #0000006b;
+    background-image: url('/assets/ajax-loader.gif');
+    background-size: contain;
+}
 
+.status {
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    float: left;
+    margin-right: 10px;
+}
 
 
 .list .room {
     width: 300px;
-    background: #f5f5f7;
+    background: #3a3a3a;
     padding: 20px;
-    border-radius: 5px;
-    margin: 20px;
+    border-radius: 3px;
     float: left;
-    box-shadow: 0 2px 6px #00000023;
-    height: calc(100% - 70px);
+    height: calc(100% - 85px);
     overflow: hidden;
+    border: 1px solid #2f2f2f;
+    transition: all 0.3s ease;
+}
+.list .room{
+    margin: 10px;
+}
+.debug-hidden .list .room{
+    margin: 20px;
 }
 .list .room .lamps{
     height: calc(100% - 34px);
@@ -132,39 +200,52 @@ h1 {
     width: calc(100% - 47px);
     margin: 10px 4px;
     padding: 20px;
-    background: #fff;
     margin-bottom: 10px;
     border-radius: 5px;
-    box-shadow: 0px 2px 4px #00000023;
     transition: all 0.3s ease;
     cursor: pointer;
-}
-.room .lamp.true {
-    background: #dae8dc;
-    box-shadow: 0px 4px 0px #b7dab7;
+
+    background: #4b4b4b;
+    box-shadow: 0 1px 2px #0000006b;
     color: #404040;
 }
-.room .lamp.true:hover {
-    box-shadow: 0px 6px 0px #b7dab7;
+.room .lamp:hover {
+    box-shadow: 0 2px 3px #0000006b;
     transform: translateY(-2px);
 }
-.room .lamp.true:active {
-    box-shadow: 0px 1px 0px #b7dab7;
+.room .lamp:active {
+    box-shadow: 0  1px 1px #0000006b, 0 1px 1px #0000006b inset;
     transform: translateY(2px);
     transition: all 0.1s ease;
 }
 
-.room .lamp.false{
-    background: #e8ddda;
-    box-shadow: 0px 4px 0px #dab7b7;
-    color: #404040;
+
+
+
+
+
+.load .status {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
 }
-.room .lamp.false:hover {
-    box-shadow: 0px 6px 0px #dab7b7;
-    transform: translateY(-2px);
+.load .status:after {
+    content: " ";
+    display: block;
+    width: 16px;
+    height: 16px;
+    margin: -3px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    border-color: #fff transparent #fff transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
 }
-.room .lamp.false:active {
-    box-shadow: 0px 1px 0px #dab7b7;
-    transform: translateY(2px);
-    transition: all 0.1s ease;
+@keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
 }
+  

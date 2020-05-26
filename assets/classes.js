@@ -43,9 +43,8 @@ class clsRoom{
         // console.log(lampHTML);
         var ret = `
             <div class="room" id="` + this.uniqueID + `">
-            <div class="name">name: ` +  this.name + `</div>
-            <div class="type">type: ` +  this.type + `</div>
-            <div class="lamps_title">lamps:</div>
+            <div class="name">` +  this.name + `</div>
+            <div class="type">` +  this.type + `</div>
             <div class="lamps">` +  lampHTML + `</div>
             </div>
         `;
@@ -81,8 +80,9 @@ class clsRoom{
 
     getHTML() {
         var ret = `
-            <div class="lamp ` + this.state + `" id="` + this.uniqueID + `" data-lampid="` + this.lampid + `">
-                <div class="lamp_name">Name: ` + this.name + `</div>
+            <div class="lamp ` + this.state + ` lamp_` + this.lampid + `" id="` + this.uniqueID + `" data-lampid="` + this.lampid + `">
+                <div class="status"></div>
+                <div class="lamp_name">` + this.name + `</div>
                 <div class="lamp_state">Status: ` + this.state + `</div>
             </div>
         `;
