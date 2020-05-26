@@ -1,6 +1,8 @@
 # simple-Philipps-Hue-Webapp
 This is a dead simple web app to control your Philips Hue Smarthome Light Setup.
 
+![Screenshot](https://github.com/VanDerLars/simple-Philipps-Hue-Webapp/blob/master/Bildschirmfoto%202020-05-26%20um%2016.41.56.png)
+
 ## reason
 I always wanted to have an easy to use and nice looking webapp for my Hue setup at home.
 
