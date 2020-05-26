@@ -1,6 +1,26 @@
 html, body{
     overflow: hidden;
+    font-family: Helvetica, sans-serif;
 }
+
+.room .name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #688294;
+}
+.room .name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #688294;
+}
+.lamp .lamp_name {
+    font-size: 18px;
+    font-weight: 700;
+    color: #688294;
+}
+
+
+
 
 .result{
     width: calc(25% - 60px);
@@ -26,11 +46,13 @@ html, body{
     width: calc(75% - 40px);
     position: fixed;
     top: 100px;
-    left: 20px;
+    left: 10px;
     border: 1px solid #000;
     transition: all 0.5s ease;
     border-radius: 10px;
     height: calc(100% - 120px);
+    overflow-y: hidden;
+    display: flex;
 }
 
 
@@ -43,4 +65,50 @@ html, body{
     margin: 20px;
     float: left;
     box-shadow: 0 2px 6px #00000023;
+    height: calc(100% - 70px);
+    overflow: hidden;
+}
+.list .room .lamps{
+    height: calc(100% - 34px);
+    overflow-y: auto;
+}
+.room .lamp {
+    width: calc(100% - 47px);
+    margin: 10px 4px;
+    padding: 20px;
+    background: #fff;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px #00000023;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.room .lamp.true {
+    background: #dae8dc;
+    box-shadow: 0px 4px 0px #b7dab7;
+    color: #404040;
+}
+.room .lamp.true:hover {
+    box-shadow: 0px 6px 0px #b7dab7;
+    transform: translateY(-2px);
+}
+.room .lamp.true:active {
+    box-shadow: 0px 1px 0px #b7dab7;
+    transform: translateY(2px);
+    transition: all 0.1s ease;
+}
+
+.room .lamp.false{
+    background: #e8ddda;
+    box-shadow: 0px 4px 0px #dab7b7;
+    color: #404040;
+}
+.room .lamp.false:hover {
+    box-shadow: 0px 6px 0px #dab7b7;
+    transform: translateY(-2px);
+}
+.room .lamp.false:active {
+    box-shadow: 0px 1px 0px #dab7b7;
+    transform: translateY(2px);
+    transition: all 0.1s ease;
 }

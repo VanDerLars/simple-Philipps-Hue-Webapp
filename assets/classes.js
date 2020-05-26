@@ -27,8 +27,10 @@ class clsRoom{
           },
           async: false
         });
-  
-        var lamp = new clsLamp(lampData, this);
+        console.log(lampData);
+        
+        var lamp = new clsLamp(lampData, this, item);
+        all_lamps.push(lamp);
         this.lamps.push(lamp);
       }
   
@@ -38,23 +40,25 @@ class clsRoom{
     getHTML(){
         var lampHTML = this.getLampHTML();
         // console.log(lampHTML);
-        return `
+        var ret = `
             <div class="room" id="` + this.uniqueID + `">
             <div class="name">name: ` +  this.name + `</div>
             <div class="type">type: ` +  this.type + `</div>
-            <div class="lamps">lamps: ` +  lampHTML + `</div>
+            <div class="lamps_title">lamps:</div>
+            <div class="lamps">` +  lampHTML + `</div>
             </div>
         `;
+        return ret;
     }
     getLampHTML(){
         var html = "";
         for(var key in this.lamps){
             var item = this.lamps[key];
             var oldhtml = html;
-            var thishtml = item.getHTML;
+            var thishtml = item.html;
             html = oldhtml + thishtml;
         }
-        log(html);
+        // console.log(html);
         return html;
     }
   }
@@ -62,23 +66,25 @@ class clsRoom{
   // ------------------------------------------------------------
   
   class clsLamp{
-    constructor(data, room) {
+    constructor(data, room, id) {
       this.data = data;
+      this.lampid = id;
   
       this.name = data.name;
       this.state = data.state.on;
       this.room = room;
+      this.uniqueID = getLampID();
+
+      this.html = this.getHTML();
     }
 
-    getHTML(){
+    getHTML() {
         var ret = `
-            <div class="lamp">
-                <div class="name">` + this.name + `</div>
-                <div class="room">` + this.room + `</div>
-                <div class="state">` + this.state + `</div>
+            <div class="lamp ` + this.state + `" id="` + this.uniqueID + `" data-lampid="` + this.lampid + `">
+                <div class="lamp_name">Name: ` + this.name + `</div>
+                <div class="lamp_state">Status: ` + this.state + `</div>
             </div>
         `;
-        console.log(ret);
         return ret;
     }
   

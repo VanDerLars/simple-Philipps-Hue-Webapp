@@ -14,18 +14,8 @@ var hue_ip = '192.168.178.25';
 // 4. anzeigen
 
 
-
-function addLampToList(name, room, state){
-  var lamp = new clsLamp(name, room, state);
-  var html = lamp.getHTML();
-  log(html);
-
-  var oldhtml = $( ".list" ).html();
-  log(oldhtml);
-  $( ".list" ).html(oldhtml + html);
-}
-
-
+let all_rooms = [];
+let all_lamps = [];
 
 
 function get_rooms(){
@@ -46,9 +36,9 @@ function get_rooms(){
 }
 
 
-let rooms = [];
 function got_rooms( data ){
-  rooms = [];
+  all_rooms = [];
+  all_lamps = [];
 
   log(data);
   var Items = JSON.parse(JSON.stringify(data));
@@ -56,7 +46,7 @@ function got_rooms( data ){
   for(var key in Items){
     var item = Items[key];
     var room = new clsRoom(item);
-    rooms.push(room);
+    all_rooms.push(room);
   }
 
   listRooms();
@@ -64,28 +54,48 @@ function got_rooms( data ){
 
 
 function listRooms(){
-  log(rooms);
+  log(all_rooms);
   
-  for (var ind in rooms) {
-    var room = rooms[ind];
+  for (var ind in all_rooms) {
+    var room = all_rooms[ind];
     var html = room.getHTML();
 
     ui_addToList(html);
+  }
+
+  // event-handler
+  $( ".lamp" ).on("click", function(){
+    var lampid = $(this).data("lampid");
+    toggleLamp(lampid)
+  });
+}
+
+// ------------------------------------------------------------------------
+function toggleLamp(lampid){
+  var thisLamp = getLamp(lampid);
+  log(thisLamp);
+}
+
+
+function getLamp(lampid){
+  for( i=1;i<all_lamps.length-1;i++){
+    if (all_lamps[i].lampid = lampid){
+      return all_lamps[i];
+    }
   }
 }
 
 
 
 
-
-
-
-
-
-
+// ------------------------------------------------------------------------
+// Helper
 function isObject(obj) {
   return obj !== null && typeof obj === 'object' && Array.isArray(obj) === false;
 }
 function getRoomID(){
   return "room" + Math.floor((Math.random() * 100000) + 1);
+}
+function getLampID(){
+  return "lamp" + Math.floor((Math.random() * 100000) + 1);
 }
