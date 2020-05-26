@@ -21,20 +21,11 @@ h1 {
     padding: 10px;
     padding-left: 20px;
 }
-.side-bar {
-    left: 0px;
-    position: fixed;
-    border: 1px solid #2f2f2f;
-    width: 168px;
-    top: 60px;
-    height: calc(100% - 100px);
-    padding: 20px;
-}
 .list {
-    width: calc(75% - 210px);
+    width: 75%;
     position: fixed;
     top: 60px;
-    left: 210px;
+    left: 0px;
     border: 1px solid #2e2e2e;
     transition: all 0.5s ease;
     border-radius: 0px;
@@ -61,6 +52,7 @@ h1 {
     box-shadow: 0 1px 2px #0000006b;
     cursor: pointer;
     transition: all 0.3s ease;
+    background-image: linear-gradient(#4b4b4b, #404040);
 }
 .switch-item:hover {
     box-shadow: 0 2px 3px #0000006b;
@@ -73,6 +65,7 @@ h1 {
 
 .switch-item.selected {
     background: #106790;
+    background-image: linear-gradient(#106790, #0d587a);
     z-index: 7;
 }
 .switch-item.left {
@@ -93,9 +86,8 @@ h1 {
 
 
 button {
-    width: 100%;
-    margin-bottom: 20px;
     background: #3a3a3a;
+    background-image: linear-gradient(#4b4b4b, #404040);
     color: #f8f9f8;
     font-size: 14px;
     text-align: left;
@@ -103,22 +95,32 @@ button {
     transition: all 0.3s ease;
     cursor: pointer;
     padding: 10px 15px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    border: 1px solid #2e2e2e;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px #0000002e;
+    outline: none;
 }
 
 button:hover {
-    border-radius: 5px;
     transition: all 0.3s ease;
-
-    background: #4b4b4b;
-    box-shadow: 0 1px 2px #0000006b;
+    box-shadow: 0 2px 3px #0000006b;
+    transform: translateY(-1px);
 }
-
+button:active {
+    box-shadow:  0 1px 1px #0000006b inset;
+    transform: translateY(1px);
+    transition: all 0.1s ease;
+}
 
 
 .room .room_switch {
     position: relative;
     float: right;
     background: #4b4b4b;
+    background-image: linear-gradient(#4b4b4b, #404040);
     padding: 7px 8px;
     height: 16px;
     border: 1px solid #2e2e2e;
@@ -179,12 +181,12 @@ button:hover {
     right: -1000px;
 }
 .debug-hidden .list {
-    width: calc(100% - 210px);
+    width: 100%;
 }
 .scene .status {
     float: right;
     top: 0px;
-    background: #4b4b4b;
+    background: #4b4b4b00;
 }
 
 .true .status,
@@ -236,12 +238,12 @@ button:hover {
 }
 .list .room .lamps,
 .list .room .scenes{
-    height: calc(100% - 34px);
+    height: calc(100% - 36px);
     overflow-y: auto;
 }
 .room .lamp,
 .room .scene {
-    width: calc(100% - 47px);
+    width: calc(100% - 49px);
     margin: 10px 4px;
     padding: 20px;
     margin-bottom: 10px;
@@ -251,6 +253,7 @@ button:hover {
     border: 1px solid #2e2e2e;
 
     background: #4b4b4b;
+    background-image: linear-gradient(#4b4b4b, #404040);
     box-shadow: 0 1px 2px #0000006b;
     color: #404040;
 }
