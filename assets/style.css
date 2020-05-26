@@ -1,7 +1,75 @@
 html, body{
     overflow: hidden;
     font-family: Helvetica, sans-serif;
+    background: #3a3a3a;
+    color: #fcfdfc;
+    font-size: 14px;
+
+    text-shadow: 0 1px 0 #4b4b4b;
 }
+h1 {
+    font-size: 16px;
+}
+.top-bar {
+    width: 100%;
+    border: 1px solid #2f2f2f;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    height: 38px;
+    padding: 10px;
+    padding-left: 20px;
+}
+.side-bar {
+    left: 0px;
+    position: fixed;
+    border: 1px solid #2f2f2f;
+    width: 168px;
+    top: 60px;
+    height: calc(100% - 100px);
+    padding: 20px;
+}
+.list {
+    width: calc(75% - 210px);
+    position: fixed;
+    top: 60px;
+    left: 210px;
+    border: 1px solid #2e2e2e;
+    transition: all 0.5s ease;
+    border-radius: 0px;
+    height: calc(100% - 100px);
+    overflow-y: hidden;
+    display: flex;
+    background: #4b4b4b;
+}
+.view-switch {
+    width: 250px;
+    position: fixed;
+    left: calc(50% - 125px);
+    top: 20px;
+    border-radius: 6px;
+    background: #4b4b4b;
+    border: 1px solid #2f2f2f;
+}
+.switch-item {
+    position: relative;
+    float: left;
+    width: calc(50% - 20px);
+    text-align: center;
+    padding: 5px 10px;
+    box-shadow: 0 1px 2px #0000006b;
+}
+
+.switch-item.selected {
+    background: #3fc0fd;
+}
+.switch-item.left {
+    border-radius: 6px 0 0 6px;
+}
+.switch-item.right {
+    border-radius: 0px 6px 6px 0px;
+}
+
 
 .room .name {
     font-size: 18px;
@@ -40,19 +108,7 @@ html, body{
     right: -1000px;
 }
 .debug-hidden .list {
-    width: calc(100% - 40px);
-}
-.list {
-    width: calc(75% - 40px);
-    position: fixed;
-    top: 100px;
-    left: 10px;
-    border: 1px solid #000;
-    transition: all 0.5s ease;
-    border-radius: 10px;
-    height: calc(100% - 120px);
-    overflow-y: hidden;
-    display: flex;
+    width: calc(100% - 210px);
 }
 
 
