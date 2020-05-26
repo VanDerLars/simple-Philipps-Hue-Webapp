@@ -72,13 +72,23 @@ h1 {
 }
 
 .switch-item.selected {
-    background: #3fc0fd;
+    background: #106790;
+    z-index: 7;
 }
 .switch-item.left {
     border-radius: 6px 0 0 6px;
 }
 .switch-item.right {
     border-radius: 0px 6px 6px 0px;
+}
+
+.content.lamps .lamps,
+.content.scenes .scenes{
+    display: block;
+}
+.content.lamps .scenes,
+.content.scenes .lamps{
+    display: none;
 }
 
 
@@ -104,16 +114,42 @@ button:hover {
 }
 
 
+
+.room .room_switch {
+    position: relative;
+    float: right;
+    background: #4b4b4b;
+    padding: 7px 8px;
+    height: 16px;
+    border: 1px solid #2e2e2e;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px #0000002e;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.room .room_switch:hover {
+    box-shadow: 0 2px 3px #0000006b;
+    transform: translateY(-1px);
+}
+.room .room_switch:active {
+    box-shadow:  0 1px 1px #0000006b inset;
+    transform: translateY(1px);
+    transition: all 0.1s ease;
+}
+
+
 .room .name {
     font-size: 16px;
     font-weight: 400;
     color: #fcfdfc;
 }
-.lamp_state {
+.lamp_state,
+.scene_type {
     color: grey;
     margin-top: 5px;
 }
-.lamp .lamp_name {
+.lamp .lamp_name,
+.scene .scene_name{
     font-size: 16px;
     font-weight: 400;
     color: #fcfdfc;
@@ -124,7 +160,6 @@ button:hover {
 .lamp.false {
     background: #2f2f2f;
 }
-
 
 .result{
     width: calc(25% - 60px);
@@ -146,22 +181,29 @@ button:hover {
 .debug-hidden .list {
     width: calc(100% - 210px);
 }
-.true .status {
+.scene .status {
+    float: right;
+    top: 0px;
+    background: #4b4b4b;
+}
+
+.true .status,
+.room_switch.true .status {
     background: #4CAF50;
     border: 1px solid #093e0a;
     box-shadow: 0 1px 2px #0000006b inset;
 }
-.false .status {
+.false .status,
+.room_switch.false .status {
     background: #F44336;
     border: 1px solid #75201a;
     box-shadow: 0 2px 2px #0000006b;
 }
-.load .status {
+.load .status,
+.room_switch .status {
     background: #1778c5;
     border: 1px solid #10568e;
     box-shadow: 0 0px 0px #0000006b;
-    background-image: url('/assets/ajax-loader.gif');
-    background-size: contain;
 }
 
 .status {
@@ -192,11 +234,13 @@ button:hover {
 .debug-hidden .list .room{
     margin: 20px;
 }
-.list .room .lamps{
+.list .room .lamps,
+.list .room .scenes{
     height: calc(100% - 34px);
     overflow-y: auto;
 }
-.room .lamp {
+.room .lamp,
+.room .scene {
     width: calc(100% - 47px);
     margin: 10px 4px;
     padding: 20px;
@@ -204,18 +248,21 @@ button:hover {
     border-radius: 5px;
     transition: all 0.3s ease;
     cursor: pointer;
+    border: 1px solid #2e2e2e;
 
     background: #4b4b4b;
     box-shadow: 0 1px 2px #0000006b;
     color: #404040;
 }
-.room .lamp:hover {
+.room .lamp:hover,
+.room .scene:hover {
     box-shadow: 0 2px 3px #0000006b;
-    transform: translateY(-2px);
+    transform: translateY(-1px);
 }
-.room .lamp:active {
-    box-shadow: 0  1px 1px #0000006b, 0 1px 1px #0000006b inset;
-    transform: translateY(2px);
+.room .lamp:active,
+.room .scene:active {
+    box-shadow: 0 1px 1px #0000006b inset;
+    transform: translateY(1px);
     transition: all 0.1s ease;
 }
 

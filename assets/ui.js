@@ -16,10 +16,38 @@ $(document).ready(function(){
     get_rooms();
 });
 
+
+
+function switchView(view){
+    if(view == 'left'){
+        $('.switch-item.right').removeClass('selected');
+        $('.switch-item.left').addClass('selected');
+
+        $('.content').addClass('lamps');
+        $('.content').removeClass('scenes');
+    }else{
+        $('.switch-item.right').addClass('selected');
+        $('.switch-item.left').removeClass('selected');
+
+        $('.content').removeClass('lamps');
+        $('.content').addClass('scenes');
+    }
+}
+
+
 function lamp_wait_state(lampid){
     var thisLamp = getLamp(lampid);
-    console.log(thisLamp);
     $('.lamp_' + thisLamp.lampid).addClass("load");
+}
+function scene_wait_state(sceneid){
+    var thisScene = getScene(sceneid);
+    $('#scene_' + thisScene.uniqueID).addClass("load");
+}
+
+function room_wait_state(roomid){
+    var thisRoom = getRoom(roomid);
+    var id = thisRoom.uniqueID;
+    $('#switch_' + id).addClass("load");
 }
 
 
