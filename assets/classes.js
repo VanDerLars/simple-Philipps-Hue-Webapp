@@ -13,7 +13,7 @@ class clsRoom{
     }
   
     getLights(){
-      log (this);
+    //   log (this);
   
       for (var idx = 0; idx < this.lights.length; idx++) {
         var item = this.lights[idx];
@@ -27,14 +27,15 @@ class clsRoom{
           },
           async: false
         });
-        console.log(lampData);
-        
+        // console.log(lampData);
+
         var lamp = new clsLamp(lampData, this, item);
+        // console.log (lamp);
         all_lamps.push(lamp);
         this.lamps.push(lamp);
       }
   
-      log(this.lamps);
+    //   log(this.lamps);
     }
   
     getHTML(){

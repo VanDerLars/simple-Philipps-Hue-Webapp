@@ -22,16 +22,16 @@ function get_rooms(){
   $.get( 'http://' + hue_ip + '/api/' + api_key + '/groups/', function(data){
     ui_reset();
     got_rooms( data );
-    log( "first success" );
   })
   .done(function() {
-    log( "second success" );
+    
   })
   .fail(function() {
-    log( "error" );
+    console.log( "error" );
+    console.log( data );
   })
   .always(function() {
-    log( "finished" );
+    
   });
 }
 
@@ -74,15 +74,47 @@ function listRooms(){
 function toggleLamp(lampid){
   var thisLamp = getLamp(lampid);
   log(thisLamp);
+  console.log (thisLamp.state);
+  var newstat;
+
+  if (thisLamp.state == true){
+    newstat = false;
+    thisLamp.state = false;
+    console.log ('SET thisLamp.state = false');
+  }else{
+    newstat = true;
+    thisLamp.state = true;
+    console.log ('SET thisLamp.state = true');
+  }
+
+
+  $.ajax({
+    contentType: 'application/json',
+    data: '{"on":' + newstat + '}',
+    dataType: 'json',
+    success: function(data){
+        console.log(data);
+        get_rooms();
+    },
+    error: function(){
+      alert("error");
+      console.log(data);
+    },
+    processData: false,
+    type: 'PUT',
+    url: 'http://' + hue_ip + '/api/' + api_key + '/lights/' + lampid + '/state/'
+  });
+
 }
 
 
 function getLamp(lampid){
-  for( i=1;i<all_lamps.length-1;i++){
-    if (all_lamps[i].lampid = lampid){
+  for( i = 1; i < all_lamps.length; i++){
+    if (all_lamps[i].lampid == lampid){
       return all_lamps[i];
     }
   }
+  return false;
 }
 
 
