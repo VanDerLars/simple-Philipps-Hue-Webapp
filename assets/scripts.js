@@ -1,10 +1,10 @@
 // Home
-var hue_ip = '192.168.1.17';
-var api_key = '7EkPnY9swLgvHyD7ct4fVoyHIsa8N9YC1ChmQJ9d';
+// var hue_ip = '192.168.1.17';
+// var api_key = '7EkPnY9swLgvHyD7ct4fVoyHIsa8N9YC1ChmQJ9d';
 
 // Büro
-// var api_key = 'ja1eBaEzxfPjVzfd0kB4bDC713pP2yzZXq1ieRhc';
-// var hue_ip = '192.168.178.25';
+var api_key = 'ja1eBaEzxfPjVzfd0kB4bDC713pP2yzZXq1ieRhc';
+var hue_ip = '192.168.178.25';
 
 
 // V O R G E H E N
