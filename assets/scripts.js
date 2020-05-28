@@ -67,7 +67,9 @@ function listRooms(){
   // event-handler
   $( ".lamp" ).on("click", function(){
     var lampid = $(this).data("lampid");
-    toggleLamp(lampid);
+    var lamp = getLamp(lampid)
+    lamp.toggleLamp();
+    // toggleLamp(lampid);
   });
 
   $( ".lamp" ).on("click", async function(){
@@ -79,7 +81,10 @@ function listRooms(){
     var roomid = $(this).data("switch-room");
     var value = $(this).data("switch-value");
 
-    toggleRoom(roomid, value);
+    var room = getRoom(roomid);
+    room.toggleRoom();
+
+    // toggleRoom(roomid, value);
   });
 
   $( ".room_switch" ).on("click", async function(){
@@ -91,8 +96,12 @@ function listRooms(){
   $( ".scene" ).on("click", function(){
     var sceneid = $(this).data("sceneid");
     var roomid = $(this).data("roomid");
-    console.log(sceneid + roomid);
-    setScene(sceneid, roomid);
+    var scene = getScene(sceneid);
+    console.log(scene);
+
+    scene.setScene();
+    
+    // setScene(sceneid, roomid);
   });
 
   $( ".scene" ).on("click", async function(){
@@ -101,77 +110,12 @@ function listRooms(){
   });
   
 }
+// http://192.168.178.25/api/ja1eBaEzxfPjVzfd0kB4bDC713pP2yzZXq1ieRhc/groups/4/action/{"scene" : "Z7CP6oAoiPzxlKw"}
+// http://192.168.178.25/api/ja1eBaEzxfPjVzfd0kB4bDC713pP2yzZXq1ieRhc/groups/3/action/{"scene" : "Z7CP6oAoiPzxlKw"}
 
 // ------------------------------------------------------------------------
-function toggleRoom(roomid, value){
-  var room = getRoom(roomid);
-  var newval = false;
-  if (value == false){newval = true}; 
-
-  for(var key in room.lamps){
-    var item = room.lamps[key];
-    var lampid = item.lampid;
-
-    setLampState(lampid, newval);
-  }
-}
-
-function toggleLamp(lampid){
-  var thisLamp = getLamp(lampid);
-  log(thisLamp);
-  console.log (thisLamp.state);
-  var newstat;
-
-  if (thisLamp.state == true){
-    newstat = false;
-    thisLamp.state = false;
-  }else{
-    newstat = true;
-    thisLamp.state = true;
-  }
-
-  setLampState(lampid, newstat);
-}
 
 
-function setLampState(lampid, newstat){
-  $.ajax({
-    contentType: 'application/json',
-    data: '{"on":' + newstat + '}',
-    dataType: 'json',
-    success: function(data){
-        console.log(data);
-        get_rooms();
-    },
-    error: function(){
-      alert("error");
-      console.log(data);
-    },
-    processData: false,
-    type: 'PUT',
-    url: 'http://' + hue_ip + '/api/' + api_key + '/lights/' + lampid + '/state/'
-  });
-}
-
-function setScene(sceneid, roomid){
-  console.log('http://' + hue_ip + '/api/' + api_key + '/groups/' + roomid + '/action/');
-  $.ajax({
-    contentType: 'application/json',
-    data: '{"scene" : "' + sceneid + '"}',
-    dataType: 'json',
-    success: function(data){
-        console.log(data);
-        get_rooms();
-    },
-    error: function(){
-      alert("error");
-      console.log(data);
-    },
-    processData: false,
-    type: 'PUT',
-    url: 'http://' + hue_ip + '/api/' + api_key + '/groups/' + roomid + '/action/'
-  });
-};
 
 
 

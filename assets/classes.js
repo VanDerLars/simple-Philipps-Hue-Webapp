@@ -30,17 +30,14 @@ class clsRoom{
           },
           async: false
         });
-        // console.log(lampData);
 
         var lamp = new clsLamp(lampData, this, item);
-        // console.log (lamp);
         all_lamps.push(lamp);
         this.lamps.push(lamp);
 
         this.lampstatuses = this.getStatus();
       }
   
-    //   log(this.lamps);
     }
 
     getScenes(){
@@ -66,22 +63,21 @@ class clsRoom{
             }
           }
     }
-  
+
     getHTML(){
         var lampHTML = this.getLampHTML();
         var sceneHTML = this.getSceneHTML();
-        // console.log(lampHTML);
         var stat = this.lampstatuses;
         var ret = `
             <div class="room" id="` + this.uniqueID + `">
-            <div class="room_switch ` + stat + `" id="switch_` + this.uniqueID + `" data-switch-room="` + this.uniqueID + `" data-switch-value="` + stat + `">
-                <div class="status"></div>
-                Switch
-            </div>
-            <div class="name">` +  this.name + `</div>
-            <div class="type">` +  this.type + `</div>
-            <div class="lamps">` +  lampHTML + `</div>
-            <div class="scenes">` +  sceneHTML + `</div>
+                <div class="room_switch ` + stat + `" id="switch_` + this.uniqueID + `" data-switch-room="` + this.uniqueID + `" data-switch-value="` + stat + `">
+                    <div class="status"></div>
+                    Switch
+                </div>
+                <div class="name">` +  this.name + `</div>
+                <div class="type">` +  this.type + `</div>
+                <div class="lamps">` +  lampHTML + `</div>
+                <div class="scenes">` +  sceneHTML + `</div>
             </div>
         `;
         return ret;
@@ -94,7 +90,6 @@ class clsRoom{
             var thishtml = item.html;
             html = oldhtml + thishtml;
         }
-        // console.log(html);
         return html;
     }
     getSceneHTML(){
@@ -105,7 +100,6 @@ class clsRoom{
             var thishtml = item.html;
             html = oldhtml + thishtml;
         }
-        // console.log(html);
         return html;
     }
     getStatus(){
@@ -124,9 +118,25 @@ class clsRoom{
             return 'true';
         }
     }
+
+    toggleRoom(){
+        var stat = this.lampstatuses;
+        var room = this;
+        var newval = false;
+
+        if (stat == 'false'){newval = true}; 
+      
+        for(var key in room.lamps){
+          var item = room.lamps[key];
+      
+          item.setLampState(newval);
+        }
+      }
+
+
   }
   
-  // ------------------------------------------------------------
+  // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 class clsScene{
@@ -156,12 +166,30 @@ class clsScene{
         `;
         return ret;
     }
+
+    setScene(){
+        $.ajax({
+          contentType: 'application/json',
+          data: '{"scene" : "' + this.sceneid + '"}',
+          dataType: 'json',
+          success: function(data){
+              get_rooms();
+          },
+          error: function(){
+            alert("error");
+          },
+          processData: false,
+          type: 'PUT',
+          url: 'http://' + hue_ip + '/api/' + api_key + '/groups/' + this.group + '/action/'
+        });
+      };
+      
 }
 
 
 
 
-  // ------------------------------------------------------------
+  // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   class clsLamp{
     constructor(data, room, id) {
@@ -187,4 +215,38 @@ class clsScene{
         return ret;
     }
   
+    toggleLamp(){
+        var thisLamp = this;
+        
+        var newstat;
+      
+        if (thisLamp.state == true){
+          newstat = false;
+          thisLamp.state = false;
+        }else{
+          newstat = true;
+          thisLamp.state = true;
+        }
+      
+        this.setLampState(newstat);
+      }
+
+      setLampState(newstat){
+        $.ajax({
+          contentType: 'application/json',
+          data: '{"on":' + newstat + '}',
+          dataType: 'json',
+          success: function(data){
+              get_rooms();
+          },
+          error: function(){
+            alert("error");
+          },
+          processData: false,
+          type: 'PUT',
+          url: 'http://' + hue_ip + '/api/' + api_key + '/lights/' + this.lampid + '/state/'
+        });
+      }
+
+
   }
