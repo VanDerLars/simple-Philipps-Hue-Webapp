@@ -40,7 +40,7 @@ let all_scenes = [];
 
 // go for it
 function get_rooms(){
-  $.get( 'http://' + hue_ip + '/api/' + api_key + '/groups/', function(data){
+  $.get( '//' + hue_ip + '/api/' + api_key + '/groups/', function(data){
     ui_reset();
     got_rooms( data );
   })
@@ -130,8 +130,8 @@ function listRooms(){
   });
   
 }
-// http://192.168.178.25/api/ja1eBaEzxfPjVzfd0kB4bDC713pP2yzZXq1ieRhc/groups/4/action/{"scene" : "Z7CP6oAoiPzxlKw"}
-// http://192.168.178.25/api/ja1eBaEzxfPjVzfd0kB4bDC713pP2yzZXq1ieRhc/groups/3/action/{"scene" : "Z7CP6oAoiPzxlKw"}
+// http//192.168.178.25/api/ja1eBaEzxfPjVzfd0kB4bDC713pP2yzZXq1ieRhc/groups/4/action/{"scene" : "Z7CP6oAoiPzxlKw"}
+// http//192.168.178.25/api/ja1eBaEzxfPjVzfd0kB4bDC713pP2yzZXq1ieRhc/groups/3/action/{"scene" : "Z7CP6oAoiPzxlKw"}
 
 // ------------------------------------------------------------------------
 
