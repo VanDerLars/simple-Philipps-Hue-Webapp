@@ -12,9 +12,6 @@ function ui_addToList(html){
 }
 
 
-$(document).ready(function(){
-    get_rooms();
-});
 
 
 
