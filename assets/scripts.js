@@ -40,7 +40,7 @@ let all_scenes = [];
 
 // go for it
 function get_rooms(){
-  $.get( '//' + hue_ip + '/api/' + api_key + '/groups/', function(data){
+  $.get( 'http://' + hue_ip + '/api/' + api_key + '/groups/', function(data){
     ui_reset();
     got_rooms( data );
   })

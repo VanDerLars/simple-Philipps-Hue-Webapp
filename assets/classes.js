@@ -8,7 +8,7 @@ class clsBridge{
         //s//discovery.meethue.com/
         var bridgelocation;
         jQuery.ajax({
-          url: '//discovery.meethue.com/',
+          url: 'https://discovery.meethue.com/',
           success: function (result) {
             bridgelocation = result;
           },
@@ -36,7 +36,7 @@ class clsBridge{
         if (username_from_cookie == ""){
                 // get new username from bridge
             var userdata;
-            this.url = '//' + this.ip + '/api/';
+            this.url = 'http://' + this.ip + '/api/';
             console.log (this.url);
 
             $.ajax({
@@ -120,7 +120,7 @@ class clsRoom{
         // synch call for getting the lamp
         var lampData;
         jQuery.ajax({
-          url: '//' + hue_ip + '/api/' + api_key + '/lights/' + item + '/',
+          url: 'http://' + hue_ip + '/api/' + api_key + '/lights/' + item + '/',
           success: function (result) {
             lampData = result;
           },
@@ -141,7 +141,7 @@ class clsRoom{
         all_scenes = [];
 
         jQuery.ajax({
-          url: '//' + hue_ip + '/api/' + api_key + '/scenes/',
+          url: 'http://' + hue_ip + '/api/' + api_key + '/scenes/',
           success: function (result) {
             scenedata = result;
           },
@@ -276,7 +276,7 @@ class clsScene{
           },
           processData: false,
           type: 'PUT',
-          url: '//' + hue_ip + '/api/' + api_key + '/groups/' + this.group + '/action/'
+          url: 'http://' + hue_ip + '/api/' + api_key + '/groups/' + this.group + '/action/'
         });
       };
       
@@ -340,7 +340,7 @@ class clsScene{
           },
           processData: false,
           type: 'PUT',
-          url: '//' + hue_ip + '/api/' + api_key + '/lights/' + this.lampid + '/state/'
+          url: 'http://' + hue_ip + '/api/' + api_key + '/lights/' + this.lampid + '/state/'
         });
       }
 

@@ -6,28 +6,28 @@
         <script src="assets/ui.js"></script>
         <link rel="stylesheet" href="assets/style.css">
     </head>
-<body>
-    <div class="content debug-hidden lamps">
-        <div class="top-bar">
-            <h1>Home App</h1>
-            <div class="view-switch">
-                <div class="switch-item left selected" onclick="switchView('left');">
-                    Lamps
+    <body>
+        <div class="content debug-hidden lamps">
+            <div class="top-bar">
+                <h1>Home App</h1>
+                <div class="view-switch">
+                    <div class="switch-item left selected" onclick="switchView('left');">
+                        Lamps
+                    </div>
+                    <div class="switch-item right" onclick="switchView('right');">
+                        Szenes
+                    </div>
                 </div>
-                <div class="switch-item right" onclick="switchView('right');">
-                    Szenes
-                </div>
+                <button onclick="get_rooms()">refresh</button>
             </div>
-            <button onclick="get_rooms()">refresh</button>
+
+            <div class="result"></div>
+            <div class="list">
+
+            </div>
         </div>
 
-        <div class="result"></div>
-        <div class="list">
-
-        </div>
-    </div>
-
-</body>
+    </body>
 
 
 </html>
